@@ -1,10 +1,17 @@
 import { Navbar, Nav } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 
-const MyNav = (props) => (
+interface Props {
+  title: string;
+}
+
+type MyNavProps = RouteComponentProps & Props;
+
+const MyNav = ({ title, location }: MyNavProps) => (
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
     <Link to="/">
-      <Navbar.Brand>{props.title}</Navbar.Brand>
+      <Navbar.Brand>{title}</Navbar.Brand>
     </Link>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
@@ -12,7 +19,7 @@ const MyNav = (props) => (
         <Link to="/">
           <div
             className={
-              props.location.pathname === "/" ? "nav-link active" : "nav-link"
+              location.pathname === "/" ? "nav-link active" : "nav-link"
             }
           >
             Home
@@ -21,9 +28,7 @@ const MyNav = (props) => (
         <Link to="/menu">
           <div
             className={
-              props.location.pathname === "/menu"
-                ? "nav-link active"
-                : "nav-link"
+              location.pathname === "/menu" ? "nav-link active" : "nav-link"
             }
           >
             Menu
@@ -32,7 +37,7 @@ const MyNav = (props) => (
         <Link to="/reservations">
           <div
             className={
-              props.location.pathname === "/reservations"
+              location.pathname === "/reservations"
                 ? "nav-link active"
                 : "nav-link"
             }

@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import Reservation from "../types/Reservation";
 
 const ReservationForm = () => {
-  const [reservation, setReservation] = useState({
+  const [reservation, setReservation] = useState<Reservation>({
     name: "",
     phone: "",
     numberOfPersons: 1,
@@ -11,7 +12,7 @@ const ReservationForm = () => {
     specialRequests: "",
   });
 
-  const inputChange = (e) => {
+  const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
     let id = e.target.id;
 
     setReservation({
@@ -22,7 +23,7 @@ const ReservationForm = () => {
 
   useEffect(() => {}, [reservation]);
 
-  const submitReservation = async (e) => {
+  const submitReservation = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
@@ -65,7 +66,7 @@ const ReservationForm = () => {
             placeholder="Enter name"
             value={reservation.name}
             id="name"
-            onChange={(e) => inputChange(e)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => inputChange(e)}
           />
         </Form.Group>
         <Form.Group>
@@ -75,7 +76,7 @@ const ReservationForm = () => {
             placeholder="Enter phone"
             id="phone"
             value={reservation.phone}
-            onChange={(e) => inputChange(e)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => inputChange(e)}
           />
         </Form.Group>
         <Form.Group>
@@ -84,7 +85,7 @@ const ReservationForm = () => {
             as="select"
             value={reservation.numberOfPersons}
             id="numberOfPersons"
-            onChange={(e) => inputChange(e)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => inputChange(e)}
           >
             <option>1</option>
             <option>2</option>
@@ -109,7 +110,7 @@ const ReservationForm = () => {
             type="datetime-local"
             value={reservation.dateTime}
             id="dateTime"
-            onChange={(e) => inputChange(e)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => inputChange(e)}
           />
         </Form.Group>
         <Form.Group>

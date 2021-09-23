@@ -3,9 +3,10 @@ import { Container, Col, Row, ListGroup } from "react-bootstrap";
 import Loading from "./Loading";
 import Error from "./Error";
 import ReservationForm from "./ReservationForm";
+import Reservation from "../types/Reservation";
 
 const Reservations = () => {
-  const [reservations, setReservations] = useState([]);
+  const [reservations, setReservations] = useState<Reservation[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -39,10 +40,8 @@ const Reservations = () => {
             <p>NO RESERVATIONS</p>
           ) : (
             <ListGroup>
-              {reservations.map((reservation) => (
-                <ListGroup.Item key={reservation._id}>
-                  {reservation.name}
-                </ListGroup.Item>
+              {reservations.map((reservation, i) => (
+                <ListGroup.Item key={i}>{reservation.name}</ListGroup.Item>
               ))}
             </ListGroup>
           )}
